@@ -10,11 +10,11 @@ module.exports = class Layer {
 
     compute(input){
         return this.weights.map(
-            cell => cell.reduce(
-                (sum,weight,i) => sum + this.activation(weight * input[i] + this.biases[i]),
+            (cell,i) => this.activation(cell.reduce(
+                (sum,weight,j) => sum + (weight * input[j]),
                 0
             )
-        )
+        ))
     }
 
 }
