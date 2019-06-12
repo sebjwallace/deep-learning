@@ -1,20 +1,13 @@
 
-module.exports = class Layer {
+class Layer {
 
-    constructor(numCells,numInputs,activation){
-        this.weights = Array.from({length:numCells},
-                () => Array.from({length:numInputs},Math.random))
-        this.biases = Array.from({length:numCells},Math.random)
-        this.activation = activation
-    }
+	constructor(numUnits, numInputs, activation) {
+		this.units = Array.from({ length: numUnits },
+			() => new Unit(numInputs, activation))
+	}
 
-    compute(input){
-        return this.weights.map(
-            (cell,i) => this.activation(cell.reduce(
-                (sum,weight,j) => sum + (weight * input[j]),
-                0
-            )
-        ))
-    }
+	compute(input) {
+		return this.units.map(unit => unit.compute(input))
+	}
 
 }

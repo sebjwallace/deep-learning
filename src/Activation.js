@@ -1,16 +1,20 @@
 
-module.exports = class Activation {
+class Activation {
 
-    static IDENTITY(val){
-        return val
+    static IDENTITY(x){
+        return x
     }
 
-    static BINARY(val){
-        return val > 0.5 ? 1 : 0
+    static BINARY(x){
+        return x > 0.5 ? 1 : 0
     }
 
-    static BIPOLAR(val){
-        return val > 0 ? 1 : -1
+    static BIPOLAR(x){
+        return x > 0 ? 1 : -1
+    }
+
+    static SIGMOID(x){
+        return 1 / (1 + Math.pow(Math.E, -x))
     }
 
 }
